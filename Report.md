@@ -20,7 +20,7 @@ augmented with extra information about the policies of other agents, while the a
 
 To be honest, training the agents was an exercise in frustration. I carried out close to 50 experiments over a two-week period using different values of hyperparameters (initially using grid search and subsequently with a random strategy), and failed most of the time to find a combination that would converge in a reasonable number of episodes. In the end, I had to borrow from results documented by fellow students to arrive at a set of hyperparameters that finally worked. See the acknowledgements section at the end of this report.
 
-In order to solve the environment, the agents must get an average score of +0.5 (over 100 consecutive episodes, and over all agents). It took 1776 episodes to solve the environment.
+In order to solve the environment, the agents must get an average score of +0.5 (over 100 consecutive episodes, after taking the maximum over both agents).
 
 DDPG employs Actor-Critic networks with Experience Replay. In our implementation, both Actor and Critic utilized a neural network with two hidden, fully-connected layers having 256 and 128 nodes respectively, interspersed with ReLU activation.
 
@@ -45,7 +45,7 @@ EPS_FINAL = 0           # final value for epsilon after decay
 ```
 ### Rewards
 
-The image below plots the rewards per episode obtained by the agent during training. Console logs show that the agents are able to receive an average reward (over 100 episodes) of +30.06 in 239 episodes.
+The image below plots the rewards per episode obtained during training. Console logs show that the agents are able to receive an average reward (over 100 episodes) of +0.5 in 1776 episodes.
 
 ![Rewards Plot](rewards.png)
 
@@ -59,4 +59,4 @@ Finally, we could also tweak hyperparameter values and train network layers of d
 
 ### Acknowledgements
 
-Many thanks to former student Tommy Tracey for sharing his [results and code](https://github.com/tommytracey/DeepRL-P3-Collaboration-Competition). I found his code and documentation extremely helpful in debugging my own project, and ended up borrowing the combination of hyperparameters that he used, after two weeks of failed experiments.
+Many thanks to former student Tommy Tracey for sharing his [results](https://github.com/tommytracey/DeepRL-P3-Collaboration-Competition). I found his code and documentation extremely helpful in debugging my own project, and ended up borrowing the combination of hyperparameters that he used, after two weeks of failed experiments.
