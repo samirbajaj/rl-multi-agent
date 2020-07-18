@@ -20,7 +20,7 @@ augmented with extra information about the policies of other agents, while the a
 
 To be honest, training the agents was an exercise in frustration. I carried out close to 50 experiments over a two-week period using different values of hyperparameters (initially using grid search and subsequently with a random strategy), and failed most of the time to find a combination that would converge in a reasonable number of episodes. In the end, I had to borrow from results documented by fellow students to arrive at a set of hyperparameters that finally worked. See the acknowledgements section at the end of this report.
 
-In order to solve the environment, the agents must get an average score of +0.5 (over 100 consecutive episodes, and over all agents).
+In order to solve the environment, the agents must get an average score of +0.5 (over 100 consecutive episodes, and over all agents). It took 1776 episodes to solve the environment.
 
 DDPG employs Actor-Critic networks with Experience Replay. In our implementation, both Actor and Critic utilized a neural network with two hidden, fully-connected layers having 256 and 128 nodes respectively, interspersed with ReLU activation.
 

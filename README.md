@@ -33,7 +33,7 @@ Download the environment from one of the links below that matches your operating
 
 The solution was developed in Python 3.6.9 on a Linux machine running Ubuntu 18.04. Instructions for setting up the required Python modules are available [here](https://github.com/udacity/deep-reinforcement-learning#dependencies). 
 
-### Training the Agent
+### Training the Agents
 
 The training code was added to the Jupyter notebook `Tennis.ipynb`, which was provided in skeletal form as part of the starter code template for this project.
 
@@ -41,7 +41,7 @@ To train the agent, simply run the code cells in the notebook in sequence all th
 
 These saved parameters are available in the repository.
 
-### Testing the Agent
+### Testing the Agents
 
 The Jupyter notebook also includes code that loads the checkpointed weights following a successful training loop and runs the agents in test mode (i.e., with `train_mode=False`) for 10 episodes.
 
