@@ -1,28 +1,28 @@
-import numpy as np
-import random
 import copy
+import random
 from collections import namedtuple, deque
 
-from model import Actor, Critic
-
+import numpy as np
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
 
+from model import Actor, Critic
+
 BUFFER_SIZE = int(1e6)  # replay buffer size
-BATCH_SIZE = 128  # minibatch size
-LR_ACTOR = 1e-3  # learning rate of the actor
-LR_CRITIC = 1e-3  # learning rate of the critic
-WEIGHT_DECAY = 0  # L2 weight decay
-LEARN_EVERY = 1  # learning timestep interval
-LEARN_NUM = 5  # number of learning passes
-GAMMA = 0.99  # discount factor
-TAU = 8e-3  # for soft update of target parameters
-OU_SIGMA = 0.2  # Ornstein-Uhlenbeck noise parameter, volatility
-OU_THETA = 0.15  # Ornstein-Uhlenbeck noise parameter, speed of mean reversion
-EPS_START = 5.0  # initial value for epsilon in noise decay process in Agent.act()
-EPS_EP_END = 300  # episode to end the noise decay process
-EPS_FINAL = 0  # final value for epsilon after decay
+BATCH_SIZE = 128        # minibatch size
+LR_ACTOR = 1e-3         # learning rate of the actor
+LR_CRITIC = 1e-3        # learning rate of the critic
+WEIGHT_DECAY = 0        # L2 weight decay
+LEARN_EVERY = 1         # learning timestep interval
+LEARN_NUM = 5           # number of learning passes
+GAMMA = 0.99            # discount factor
+TAU = 8e-3              # for soft update of target parameters
+OU_SIGMA = 0.2          # Ornstein-Uhlenbeck noise parameter, volatility
+OU_THETA = 0.15         # Ornstein-Uhlenbeck noise parameter, speed of mean reversion
+EPS_START = 5.0         # initial value for epsilon in noise decay process in Agent.act()
+EPS_EP_END = 300        # episode to end the noise decay process
+EPS_FINAL = 0           # final value for epsilon after decay
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -33,12 +33,10 @@ class Agent:
     def __init__(self, state_size, action_size, num_agents=1, random_seed=0):
         """Initialize an Agent object.
 
-        Params
-        ======
-            state_size (int): dimension of each state
-            action_size (int): dimension of each action
-            num_agents (int): number of agents
-            random_seed (int): random seed
+            :param state_size (int): dimension of each state
+            :param action_size (int): dimension of each action
+            :param num_agents (int): number of agents
+            :param random_seed (int): random seed
         """
         self.state_size = state_size
         self.action_size = action_size
@@ -101,10 +99,9 @@ class Agent:
         where:
             actor_target(state) -> action
             critic_target(state, action) -> Q-value
-        Params
-        ======
-            experiences (Tuple[torch.Tensor]): tuple of (s, a, r, s', done) tuples
-            gamma (float): discount factor
+
+            :param experiences (Tuple[torch.Tensor]): tuple of (s, a, r, s', done) tuples
+            :param gamma (float): discount factor
         """
         states, actions, rewards, next_states, dones = experiences
 
@@ -155,11 +152,10 @@ class Agent:
     def soft_update(self, local_model, target_model, tau):
         """Soft update model parameters.
         θ_target = τ*θ_local + (1 - τ)*θ_target
-        Params
-        ======
-            local_model: PyTorch model (weights will be copied from)
-            target_model: PyTorch model (weights will be copied to)
-            tau (float): interpolation parameter
+
+            :param local_model: PyTorch model (weights will be copied from)
+            :param target_model: PyTorch model (weights will be copied to)
+            :param tau (float): interpolation parameter
         """
         for target_param, local_param in zip(target_model.parameters(), local_model.parameters()):
             target_param.data.copy_(tau * local_param.data + (1.0 - tau) * target_param.data)
@@ -170,11 +166,10 @@ class OUNoise:
 
     def __init__(self, size, seed, mu=0.0, theta=OU_THETA, sigma=OU_SIGMA):
         """Initialize parameters and noise process.
-        Params
-        ======
-            mu (float)    : long-running mean
-            theta (float) : speed of mean reversion
-            sigma (float) : volatility parameter
+
+            :param mu (float)    : long-running mean
+            :param theta (float) : speed of mean reversion
+            :param sigma (float) : volatility parameter
         """
         self.mu = mu * np.ones(size)
         self.theta = theta
@@ -200,10 +195,9 @@ class ReplayBuffer:
 
     def __init__(self, action_size, buffer_size, batch_size, seed):
         """Initialize a ReplayBuffer object.
-        Params
-        ======
-            buffer_size (int): maximum size of buffer
-            batch_size (int): size of each training batch
+
+            :param buffer_size (int): maximum size of buffer
+            :param batch_size (int): size of each training batch
         """
         self.action_size = action_size
         self.memory = deque(maxlen=buffer_size)  # internal memory (deque)

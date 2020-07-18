@@ -8,7 +8,7 @@ import torch.nn.functional as F
 def hidden_init(layer):
     fan_in = layer.weight.data.size()[0]
     lim = 1. / np.sqrt(fan_in)
-    return (-lim, lim)
+    return -lim, lim
 
 
 class Actor(nn.Module):
@@ -16,13 +16,12 @@ class Actor(nn.Module):
 
     def __init__(self, state_size, action_size, seed, fc1_units=256, fc2_units=128):
         """Initialize parameters and build model.
-        Params
-        ======
-            state_size (int): Dimension of each state
-            action_size (int): Dimension of each action
-            seed (int): Random seed
-            fc1_units (int): Number of nodes in first hidden layer
-            fc2_units (int): Number of nodes in second hidden layer
+
+            :param state_size (int): Dimension of each state
+            :param action_size (int): Dimension of each action
+            :param seed (int): Random seed
+            :param fc1_units (int): Number of nodes in first hidden layer
+            :param fc2_units (int): Number of nodes in second hidden layer
         """
         super(Actor, self).__init__()
         self.seed = torch.manual_seed(seed)
@@ -48,13 +47,12 @@ class Critic(nn.Module):
 
     def __init__(self, state_size, action_size, seed, fcs1_units=256, fc2_units=128):
         """Initialize parameters and build model.
-        Params
-        ======
-            state_size (int): Dimension of each state
-            action_size (int): Dimension of each action
-            seed (int): Random seed
-            fcs1_units (int): Number of nodes in the first hidden layer
-            fc2_units (int): Number of nodes in the second hidden layer
+
+            :param state_size (int): Dimension of each state
+            :param action_size (int): Dimension of each action
+            :param seed (int): Random seed
+            :param fcs1_units (int): Number of nodes in the first hidden layer
+            :param fc2_units (int): Number of nodes in the second hidden layer
         """
         super(Critic, self).__init__()
         self.seed = torch.manual_seed(seed)
