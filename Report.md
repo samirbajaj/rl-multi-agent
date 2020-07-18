@@ -61,4 +61,4 @@ Finally, we could also tweak hyperparameter values and train network layers of d
 
 Many thanks to former student Tommy Tracey for sharing his [results](https://github.com/tommytracey/DeepRL-P3-Collaboration-Competition). I found his code and documentation extremely helpful in debugging my own project, and ended up borrowing the combination of hyperparameters that he used, after two weeks of failed experiments.
 
-If some of the project code resembles that from [Project 2: Continuous Control](https://github.com/samirbajaj/rl-continuous-control), that's no coincidence. Most of the agent and training code was essentially reused, because Multi-Agent DDPG is (at a fundamantal level), and adaptation of DDPG.
+If some of the project code resembles that from [Project 2: Continuous Control](https://github.com/samirbajaj/rl-continuous-control), that's no coincidence. Most of the agent and training code was essentially reused, because Multi-Agent DDPG is (at a fundamental level), an adaptation of DDPG.
